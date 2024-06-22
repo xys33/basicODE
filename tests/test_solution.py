@@ -1,10 +1,10 @@
 import unittest
-from solution import basicODE
+from solution import ode_solver
 
 class TestLeetSkeleton(unittest.TestCase):
     def test_solution(self):
         """
-        Test example for basicODE.py solution class method.
+        Test example for ode_solver.py solution class method.
         Compares exact solution with solver result
         """
 
@@ -15,9 +15,26 @@ class TestLeetSkeleton(unittest.TestCase):
         t0 = 0
         tf = 5
         data = []
-        solution_instance = basicODE.Solution()
+        #solution_instance = ode_solver.Solution()
         
-        self.assertEqual(solution_instance.fake_sum(data), 6)
+        # The client code picks a concrete strategy and passes it to the context.
+        # The client should be aware of the differences between strategies in order
+        # to make the right choice.
+
+        data = ["a", "b", "c", "d", "e"]
+        test_solver = ode_solver(ode_solver.ode_liniear())
+        #print("Client: Strategy is set to normal sorting.")
+        res_lin = test_solver.solve(data)
+        #print()
+
+        #print("Client: Strategy is set to reverse sorting.")
+        test_solver.strategy = ode_solver.ode_trapezoidal()
+        res_trap = test_solver.solve(data)
+        
+        
+        self.assertEqual(','.join(res_lin),"a,b,c,d,e")
+        self.assertEqual(','.join(res_lin),"e,d,c,b,a")
+        
 
 if __name__ == '__main__':
     unittest.main()

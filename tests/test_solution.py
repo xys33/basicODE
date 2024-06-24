@@ -1,5 +1,5 @@
 import unittest
-from solution import ode_solver
+from solution import odeSolver
 
 class TestLeetSkeleton(unittest.TestCase):
     def test_solution(self):
@@ -12,7 +12,7 @@ class TestLeetSkeleton(unittest.TestCase):
         fprime = 1
         exactSol = 1
         y0 = 1
-        t0 = 0
+        t0 = 0  
         tf = 5
         data = []
         #solution_instance = ode_solver.Solution()
@@ -22,18 +22,18 @@ class TestLeetSkeleton(unittest.TestCase):
         # to make the right choice.
 
         data = ["a", "b", "c", "d", "e"]
-        test_solver = ode_solver(ode_solver.ode_liniear())
+        test_solver = odeSolver.ode_solver(odeSolver.ode_liniear())
         #print("Client: Strategy is set to normal sorting.")
         res_lin = test_solver.solve(data)
         #print()
 
         #print("Client: Strategy is set to reverse sorting.")
-        test_solver.strategy = ode_solver.ode_trapezoidal()
+        test_solver.strategy = odeSolver.ode_trapezoidal()
         res_trap = test_solver.solve(data)
         
         
         self.assertEqual(','.join(res_lin),"a,b,c,d,e")
-        self.assertEqual(','.join(res_lin),"e,d,c,b,a")
+        self.assertEqual(','.join(res_trap),"e,d,c,b,a")
         
 
 if __name__ == '__main__':

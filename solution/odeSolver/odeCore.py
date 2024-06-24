@@ -1,4 +1,4 @@
-from ode_strategies import *
+from .odeStrategies import ode_strategy, ode_liniear, ode_trapezoidal
 
 class ode_solver():
     """
